@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -20,7 +19,6 @@ const registerSchema = z.object({
 
 type RegisterFormInputs = z.infer<typeof registerSchema>;
 
-
 const registerUser = async (data: RegisterFormInputs) => {
   const response = await axios.post("/api/auth/register", data);
   return response.data;
@@ -40,7 +38,7 @@ const RegisterForm = () => {
     mutationFn: registerUser,
     onSuccess: () => {
       toast.success("User registered successfully!");
-      reset(); 
+      reset();
     },
     onError: (error: any) => {
       const errorMsg =
@@ -55,18 +53,18 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 space-y-6"
+        className="w-full max-w-md bg-white bg-opacity-90 backdrop-filter backdrop-blur-md shadow-xl rounded-2xl p-8 space-y-6"
       >
-        <h2 className="text-2xl font-bold text-center text-gray-800">
-          Sign Up
+        <h2 className="text-3xl font-extrabold text-center text-gray-800">
+          Create Account
         </h2>
         <div>
           <label
             htmlFor="name"
-            className="block text-gray-700 font-medium mb-1"
+            className="block text-gray-700 font-semibold mb-2"
           >
             Name
           </label>
@@ -74,7 +72,8 @@ const RegisterForm = () => {
             id="name"
             type="text"
             {...register("name")}
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+            placeholder="Your Name"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -83,7 +82,7 @@ const RegisterForm = () => {
         <div>
           <label
             htmlFor="email"
-            className="block text-gray-700 font-medium mb-1"
+            className="block text-gray-700 font-semibold mb-2"
           >
             Email
           </label>
@@ -91,7 +90,8 @@ const RegisterForm = () => {
             id="email"
             type="email"
             {...register("email")}
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+            placeholder="you@example.com"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -100,7 +100,7 @@ const RegisterForm = () => {
         <div>
           <label
             htmlFor="password"
-            className="block text-gray-700 font-medium mb-1"
+            className="block text-gray-700 font-semibold mb-2"
           >
             Password
           </label>
@@ -108,7 +108,8 @@ const RegisterForm = () => {
             id="password"
             type="password"
             {...register("password")}
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+            placeholder="********"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">
@@ -119,19 +120,21 @@ const RegisterForm = () => {
         <button
           type="submit"
           disabled={mutation.isPending}
-          className="flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors w-full"
+          className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg hover:from-green-600 hover:to-blue-600 transition duration-300"
         >
           <FaUserPlus className="mr-2" />
           {mutation.isPending ? "Registering..." : "Register"}
         </button>
-        <p className="mt-4 text-center text-sm">
-          Don't have an account?{" "}
-          <Link href="/login" className="text-green-600 hover:underline">
+        <p className="mt-4 text-center text-gray-600">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="text-blue-500 font-semibold hover:underline"
+          >
             Log In
           </Link>
         </p>
       </form>
-
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar />
     </div>
   );
