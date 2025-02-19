@@ -36,7 +36,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // Pass the custom session type
     const session = await getIronSession<CustomSessionData>(
       await cookies(),
       sessionOptions
@@ -76,7 +75,6 @@ export async function PATCH(request: Request) {
       );
     }
 
-    // Pass the custom session type
     const session = await getIronSession<CustomSessionData>(
       await cookies(),
       sessionOptions
@@ -116,7 +114,6 @@ export async function PATCH(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    // Pass the custom session type
     const session = await getIronSession<CustomSessionData>(
       await cookies(),
       sessionOptions
@@ -137,7 +134,6 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "Invalid job id" }, { status: 400 });
     }
 
-    // Check if the job exists before attempting deletion
     const existingJob = await prisma.job.findUnique({ where: { id: jobId } });
     if (!existingJob) {
       return NextResponse.json({ error: "Job not found" }, { status: 404 });

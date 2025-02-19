@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
-import RingLoader from "react-spinners/RingLoader"; // Using RingLoader
+import RingLoader from "react-spinners/RingLoader"; 
 
 const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -24,7 +24,7 @@ const jobSchema = z.object({
 type JobFormData = z.infer<typeof jobSchema>;
 
 export default function EditJobPage() {
-  const { id } = useParams(); // job id from URL parameters
+  const { id } = useParams(); 
   const router = useRouter();
 
   const {
@@ -36,7 +36,6 @@ export default function EditJobPage() {
     resolver: zodResolver(jobSchema),
   });
 
-  // Fetch job data using react-query
   const { data, isLoading, isError } = useQuery<JobFormData, Error>({
     queryKey: ["job", id],
     queryFn: async () => {
@@ -46,7 +45,6 @@ export default function EditJobPage() {
     enabled: !!id,
   });
 
-  // Reset form values when data is fetched
   React.useEffect(() => {
     if (data) {
       reset({
@@ -73,11 +71,9 @@ export default function EditJobPage() {
     mutation.mutate(data);
   };
 
-  // Define common input styling
   const inputClasses =
     "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
 
-  // Attractive RingLoader while data is loading
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
@@ -91,7 +87,7 @@ export default function EditJobPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
+        <h1 className="text-3xl font-bold text-center text-blue-800 mb-4">
           Edit Job
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -190,7 +186,7 @@ export default function EditJobPage() {
             </p>
           )}
 
-          {/* Back to Dashboard button */}
+        
           <button
             type="button"
             onClick={() => router.push("/dashboard")}

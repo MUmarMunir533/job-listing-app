@@ -58,7 +58,7 @@ const RegisterForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-md bg-white bg-opacity-90 backdrop-filter backdrop-blur-md shadow-xl rounded-2xl p-8 space-y-6"
       >
-        <h2 className="text-3xl font-extrabold text-center text-gray-800">
+        <h2 className="text-3xl font-extrabold text-center text-blue-700">
           Create Account
         </h2>
         <div>

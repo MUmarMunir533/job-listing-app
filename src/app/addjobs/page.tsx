@@ -49,14 +49,13 @@ export default function CreateJobPage() {
     mutation.mutate(data);
   };
 
-  // Updated common input styling classes
   const inputClasses =
     "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
+        <h1 className="text-3xl font-bold text-center text-blue-800 mb-4">
           Create New Job
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -154,7 +153,6 @@ export default function CreateJobPage() {
             {mutation.isPending ? "Creating..." : "Create Job"}
           </button>
 
-          {/* Button to navigate back to the dashboard */}
           <button
             type="button"
             onClick={() => router.push("/dashboard")}

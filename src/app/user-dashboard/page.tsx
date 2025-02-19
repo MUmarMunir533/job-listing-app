@@ -1,39 +1,109 @@
 "use client";
-import { FiUser, FiBriefcase, FiLogOut, FiSettings } from "react-icons/fi";
+
+import React from "react";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import RingLoader from "react-spinners/RingLoader";
+
+interface DummyData {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const dummyData: DummyData[] = [
+  {
+    id: 1,
+    title: "Dummy Card Title",
+    description: "This is a dummy description for demonstration purposes.",
+  },
+  {
+    id: 2,
+    title: "Dummy Card Title",
+    description: "This is a dummy description for demonstration purposes.",
+  },
+  {
+    id: 3,
+    title: "Dummy Card Title",
+    description: "This is a dummy description for demonstration purposes.",
+  },
+  {
+    id: 4,
+    title: "Dummy Card Title",
+    description: "This is a dummy description for demonstration purposes.",
+  },
+];
 
 export default function UserDashboard() {
+  const router = useRouter();
+
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: () => {
+      if (typeof window !== "undefined") {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+      }
+      return null;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center bg-gradient-to-br from-blue-500 to-purple-600 justify-center min-h-screen">
+        <RingLoader color="#ffffff" size={60} />
+      </div>
+    );
+  }
+
+  if (error || !user) {
+    return (
+      <div className="text-center text-red-500 text-lg">
+        Error loading user data
+      </div>
+    );
+  }
+
+  const handleSeeJobs = () => {
+    router.push("/alljobs");
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      <div className="w-full max-w-3xl bg-white shadow-xl rounded-lg p-8">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b pb-4">
-          <h2 className="text-3xl font-bold text-gray-800">Dashboard</h2>
-          <FiLogOut className="text-red-600 cursor-pointer text-2xl" />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-6">
+      <header className="mb-8 text-center">
+        <h1 className="text-4xl font-extrabold text-white">User Dashboard</h1>
+      </header>
 
-        {/* Profile Section */}
-        <div className="flex flex-col items-center mt-6">
-          <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center text-3xl">
-            <FiUser />
-          </div>
-          <h3 className="text-2xl font-semibold mt-2">John Doe</h3>
-          <p className="text-gray-500">johndoe@example.com</p>
-        </div>
+      <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
+        <h2 className="text-2xl font-bold text-blue-800 mb-2">
+          Welcome, {user.name}
+        </h2>
+        <p className="text-gray-600 mb-2">Email: {user.email}</p>
+        <p className="text-gray-600">Role: {user.role}</p>
+      </div>
 
-        {/* Menu Options */}
-        <div className="mt-8 flex flex-col gap-4">
-          <div className="flex items-center gap-3 p-4 bg-purple-100 rounded-lg cursor-pointer hover:bg-purple-200">
-            <FiBriefcase className="text-purple-600 text-2xl" />
-            <span className="text-purple-600 font-medium text-lg">My Jobs</span>
-          </div>
+      <div className="flex justify-end mb-6">
+        <button
+          onClick={handleSeeJobs}
+          className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-5 py-3 rounded-md shadow hover:shadow-lg transition-all"
+        >
+          See Jobs
+        </button>
+      </div>
 
-          <div className="flex items-center gap-3 p-4 bg-yellow-100 rounded-lg cursor-pointer hover:bg-yellow-200">
-            <FiSettings className="text-yellow-600 text-2xl" />
-            <span className="text-yellow-600 font-medium text-lg">
-              Settings
-            </span>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {dummyData.map((item) => (
+          <div key={item.id} className="bg-white shadow-lg rounded-lg p-6">
+            <h2 className="text-2xl font-bold text-blue-800 mb-2">
+              {item.title}
+            </h2>
+            <p className="text-gray-600 mb-4">{item.description}</p>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

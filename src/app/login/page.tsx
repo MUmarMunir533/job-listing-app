@@ -34,6 +34,7 @@ export type LoginFormInputs = z.infer<typeof loginSchema>;
 
 const loginUser = async (data: LoginFormInputs): Promise<LoginResponse> => {
   const response = await axios.post("/api/auth/login", data);
+  localStorage.setItem("user", response?.data.user);
   return response.data;
 };
 
@@ -76,7 +77,7 @@ const LoginForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-6">
       <div className="w-full max-w-md bg-white bg-opacity-90 backdrop-filter backdrop-blur-md shadow-xl rounded-2xl p-8 space-y-6">
-        <h2 className="text-3xl font-extrabold text-center text-gray-800">
+        <h2 className="text-3xl font-extrabold text-center text-blue-700">
           Login
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">

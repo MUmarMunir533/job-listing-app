@@ -40,10 +40,8 @@ export default function AdminDashboard() {
     queryFn: fetchJobs,
   });
 
-  // State for delete confirmation modal
   const [jobToDelete, setJobToDelete] = React.useState<Job | null>(null);
 
-  // Mutation for deleting a job using axios
   const deleteMutation = useMutation({
     mutationFn: async (jobId: number) => {
       try {
@@ -111,7 +109,7 @@ export default function AdminDashboard() {
           {jobs && jobs.length > 0 ? (
             jobs.map((job) => (
               <div key={job.id} className="bg-white shadow-lg rounded-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                <h2 className="text-2xl font-bold text-blue-800 mb-2">
                   {job.title}
                 </h2>
                 <p className="text-gray-600 mb-1">
@@ -149,7 +147,6 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
       {jobToDelete && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
