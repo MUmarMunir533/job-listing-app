@@ -32,10 +32,10 @@ function runMiddleware(req: any, res: any, fn: Function) {
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id;
+    const { id } = await params;
     console.log("Raw job id from params:", id);
     if (!id) {
       return NextResponse.json({ error: "Job id is missing" }, { status: 400 });

@@ -26,12 +26,25 @@ export async function middleware(req: NextRequest) {
   const { role } = session.user;
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/user-dashboard") && role === "admin") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+  const adminRoutes = [
+    "/dashboard",
+    "/addjobs",
+    "/seeapplication",
+    "/editjobs",
+  ];
+  const userRoutes = ["/user-dashboard", "/alljobs"];
+  if (
+    adminRoutes.some((route) => pathname.startsWith(route)) &&
+    role !== "admin"
+  ) {
+    return NextResponse.redirect(new URL("/user-dashboard", req.url));
   }
 
-  if (pathname.startsWith("/dashboard") && role === "user") {
-    return NextResponse.redirect(new URL("/user-dashboard", req.url));
+  if (
+    userRoutes.some((route) => pathname.startsWith(route)) &&
+    role !== "user"
+  ) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   return res;
@@ -39,9 +52,15 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/api/create",
     "/user-dashboard",
+    "/alljobs",
+    "/alljobs/:path*",
+
     "/dashboard",
+    "/addjobs",
+    "/seeapplication",
+    "/editjobs/:path*",
+    "/api/create",
     "/api/delete",
     "/api/update",
   ],
