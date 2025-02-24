@@ -60,8 +60,10 @@ export const config = {
     "/addjobs",
     "/seeapplication",
     "/editjobs/:path*",
-    "/api/create",
-    "/api/delete",
-    "/api/update",
+    "/api/auth/addjob",
+    "/api/auth/editjob/:path*",
+    "/api/auth/jobs",
+    "/api/auth/logout",
+    "/api/auth/session",
   ],
 };
