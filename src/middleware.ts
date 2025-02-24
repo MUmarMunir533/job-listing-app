@@ -13,7 +13,6 @@ interface SessionData {
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-
   const session: IronSession<SessionData> = await getIronSession<SessionData>(
     req,
     res,
@@ -40,7 +39,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/",
     "/api/create",
     "/user-dashboard",
     "/dashboard",

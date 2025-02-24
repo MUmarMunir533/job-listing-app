@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
-import RingLoader from "react-spinners/RingLoader"; 
+import RingLoader from "react-spinners/RingLoader";
 
 const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -24,7 +24,7 @@ const jobSchema = z.object({
 type JobFormData = z.infer<typeof jobSchema>;
 
 export default function EditJobPage() {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const router = useRouter();
 
   const {
@@ -117,7 +117,9 @@ export default function EditJobPage() {
               className={inputClasses}
             />
             {errors.description && (
-              <p className="text-red-500 text-sm">{errors.description.message}</p>
+              <p className="text-red-500 text-sm">
+                {errors.description.message}
+              </p>
             )}
           </div>
 
@@ -186,7 +188,6 @@ export default function EditJobPage() {
             </p>
           )}
 
-        
           <button
             type="button"
             onClick={() => router.push("/dashboard")}

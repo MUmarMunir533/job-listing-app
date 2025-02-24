@@ -34,6 +34,9 @@ model Application {
   jobId     Int  
   userId    Int  
   resume    String  
+  userName  String
+  email     String
+  coverLetter String?
   status     String    @default("pending")  
   job       Job      @relation(fields: [jobId], references: [id])  
   user      User     @relation(fields: [userId], references: [id])  

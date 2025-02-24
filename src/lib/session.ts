@@ -12,12 +12,11 @@ declare module "iron-session" {
   interface IronSessionData {
     user?: {
       id: number;
-      name: string; 
+      name: string;
       email: string;
-      role: string; 
+      role: string;
     };
   }
 }
-
 
 export {};
