@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import RingLoader from "react-spinners/RingLoader";
+import toast, { Toaster } from "react-hot-toast";
 
 const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -63,6 +64,7 @@ export default function EditJobPage() {
       return response.data;
     },
     onSuccess: () => {
+      toast.success("Job updated successfully!");
       router.push("/dashboard");
     },
   });
@@ -86,6 +88,8 @@ export default function EditJobPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
+      <Toaster position="top-right" />
+
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
         <h1 className="text-3xl font-bold text-center text-blue-800 mb-4">
           Edit Job

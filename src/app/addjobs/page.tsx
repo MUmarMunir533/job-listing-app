@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast"; 
 
 const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -40,6 +41,8 @@ export default function CreateJobPage() {
       return response.data;
     },
     onSuccess: () => {
+      toast.success("Job added successfully!");
+
       queryClient.invalidateQueries({ queryKey: ["jobs"] });
       router.push("/dashboard");
     },
@@ -54,6 +57,8 @@ export default function CreateJobPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
+      <Toaster position="top-right" />
+
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
         <h1 className="text-3xl font-bold text-center text-blue-800 mb-4">
           Create New Job

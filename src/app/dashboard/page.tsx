@@ -3,7 +3,16 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import {
+  FaEdit,
+  FaTrash,
+  FaPlus,
+  FaSignOutAlt,
+  FaClipboardList,
+  FaTag,
+  FaMapMarkerAlt,
+  FaDollarSign,
+} from "react-icons/fa";
 import RingLoader from "react-spinners/RingLoader";
 import axios from "axios";
 
@@ -99,7 +108,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         <header className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center mb-8">
-          <div className="flex justify-start">
+          <div className="flex items-center justify-start">
             <h1 className="text-3xl md:text-4xl font-extrabold text-white">
               Admin Dashboard
             </h1>
@@ -107,22 +116,25 @@ export default function AdminDashboard() {
           <div className="flex justify-center">
             <button
               onClick={handleSeeApplication}
-              className="text-white underline text-lg md:text-xl hover:text-gray-200 transition-colors"
+              className="flex items-center text-white underline text-lg md:text-xl hover:text-gray-200 transition-colors"
             >
+              <FaClipboardList className="mr-2" />
               See Application
             </button>
           </div>
           <div className="flex justify-end space-x-2 md:space-x-4">
             <button
               onClick={handleAddJob}
-              className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-2 md:px-5 md:py-3 rounded-md shadow hover:shadow-lg transition-all"
+              className="flex items-center bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-2 md:px-5 md:py-3 rounded-md shadow hover:shadow-lg transition-all"
             >
+              <FaPlus className="mr-2" />
               Add New Job
             </button>
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-3 py-2 md:px-5 md:py-3 rounded-md shadow hover:shadow-lg transition-all"
+              className="flex items-center bg-red-500 text-white px-3 py-2 md:px-5 md:py-3 rounded-md shadow hover:shadow-lg transition-all"
             >
+              <FaSignOutAlt className="mr-2" />
               Logout
             </button>
           </div>
@@ -148,19 +160,37 @@ export default function AdminDashboard() {
               jobs.map((job) => (
                 <div
                   key={job.id}
-                  className="bg-white shadow-lg rounded-lg p-4 md:p-6"
+                  className="bg-white shadow-md hover:shadow-xl rounded-lg p-4 border-l-4 border-blue-500 transition-all duration-300 transform hover:scale-105"
                 >
-                  <h2 className="text-xl md:text-2xl font-bold text-blue-800 mb-2">
+                  <h2 className="text-lg sm:text-xl font-bold text-blue-800 mb-2">
                     {job.title}
                   </h2>
-                  <p className="text-gray-600 mb-1">
-                    <strong>Category:</strong> {job.category}
+                  <p className="text-gray-600 mb-1 flex items-center">
+                    <FaTag className="text-purple-500 mr-2" size={16} />
+                    <span>
+                      <span className="font-semibold text-blue-600">
+                        Category:
+                      </span>{" "}
+                      {job.category}
+                    </span>
                   </p>
-                  <p className="text-gray-600 mb-1">
-                    <strong>Location:</strong> {job.location}
+                  <p className="text-gray-600 mb-1 flex items-center">
+                    <FaMapMarkerAlt className="text-red-500 mr-2" size={16} />
+                    <span>
+                      <span className="font-semibold text-blue-600">
+                        Location:
+                      </span>{" "}
+                      {job.location}
+                    </span>
                   </p>
-                  <p className="text-gray-600 mb-4">
-                    <strong>Salary:</strong> ${job.salary.toLocaleString()}
+                  <p className="text-gray-600 mb-4 flex items-center">
+                    <FaDollarSign className="text-green-500 mr-2" size={16} />
+                    <span>
+                      <span className="font-semibold text-blue-600">
+                        Salary:
+                      </span>{" "}
+                      ${job.salary.toLocaleString()}
+                    </span>
                   </p>
                   <div className="flex justify-end space-x-2 md:space-x-4">
                     <button

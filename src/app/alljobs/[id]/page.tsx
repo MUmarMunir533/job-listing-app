@@ -33,7 +33,6 @@ const ApplicationForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ApplicationFormInputs>({
     resolver: zodResolver(applicationSchema),
@@ -89,9 +88,9 @@ const ApplicationForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-6">
-      <div className="w-full max-w-md bg-white bg-opacity-90 backdrop-filter backdrop-blur-md shadow-xl rounded-2xl p-8 space-y-6">
-        <h2 className="text-3xl font-extrabold text-center text-blue-700">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4 sm:p-6">
+      <div className="w-full max-w-lg bg-white bg-opacity-90 backdrop-blur-md shadow-2xl rounded-3xl p-8 space-y-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-blue-700">
           Apply for Job
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -101,9 +100,9 @@ const ApplicationForm = () => {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Your Name"
               {...register("fullName")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.fullName && (
               <p className="text-red-500 text-sm mt-1">
@@ -117,9 +116,9 @@ const ApplicationForm = () => {
             </label>
             <input
               type="email"
-              placeholder="john.doe@example.com"
+              placeholder="Example@gmail.com"
               {...register("email")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -135,7 +134,7 @@ const ApplicationForm = () => {
               placeholder="Your cover letter..."
               rows={4}
               {...register("coverLetter")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.coverLetter && (
               <p className="text-red-500 text-sm mt-1">
@@ -151,7 +150,7 @@ const ApplicationForm = () => {
               type="file"
               {...register("resume")}
               accept=".pdf, .doc, .docx"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300 cursor-pointer"
             />
             {errors.resume && (
               <p className="text-red-500 text-sm mt-1">
@@ -162,7 +161,7 @@ const ApplicationForm = () => {
           <button
             type="submit"
             disabled={mutation.isPending}
-            className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg hover:from-green-600 hover:to-blue-600 transition-colors"
+            className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg transition-transform duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {mutation.isPending ? "Submitting..." : "Submit Application"}
             {!mutation.isPending && <FaPaperPlane className="ml-2" />}

@@ -88,8 +88,8 @@ const LoginForm = () => {
             <input
               type="email"
               {...register("email")}
-              placeholder="you@example.com"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              placeholder="Example@gmail.com"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all text-gray-700 autofill:text-gray-700"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -105,7 +105,7 @@ const LoginForm = () => {
               type="password"
               {...register("password")}
               placeholder="********"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all text-gray-700 autofill:text-gray-700"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">

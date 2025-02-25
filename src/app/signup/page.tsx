@@ -73,7 +73,7 @@ const RegisterForm = () => {
             type="text"
             {...register("name")}
             placeholder="Your Name"
-            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-700 transition duration-200"
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -90,8 +90,8 @@ const RegisterForm = () => {
             id="email"
             type="email"
             {...register("email")}
-            placeholder="you@example.com"
-            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
+            placeholder="example@gmail.com"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-700 transition duration-200"
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -109,7 +109,7 @@ const RegisterForm = () => {
             type="password"
             {...register("password")}
             placeholder="********"
-            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
+            className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-700 transition duration-200"
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">
