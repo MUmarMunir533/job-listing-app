@@ -81,6 +81,7 @@ export default function JobListingPage() {
   });
 
   const onSubmit = (data: SearchFormData) => {
+
   };
 
   const handleApply = (id: number) => {
@@ -94,7 +95,6 @@ export default function JobListingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-
         <header className="flex flex-col sm:flex-row justify-between items-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white text-center sm:text-left mb-4 sm:mb-0">
             User Dashboard
@@ -112,13 +112,12 @@ export default function JobListingPage() {
             onSubmit={handleSubmit(onSubmit)}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
           >
-
             <div className="relative">
               <input
                 type="text"
                 placeholder="Location"
                 {...register("location")}
-                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
               />
               <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-purple-500 text-xl hover:scale-110 transition-transform" />
             </div>
@@ -128,7 +127,7 @@ export default function JobListingPage() {
                 type="text"
                 placeholder="Category"
                 {...register("category")}
-                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
               />
               <FaBriefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-500 text-xl hover:scale-110 transition-transform" />
             </div>
@@ -138,7 +137,7 @@ export default function JobListingPage() {
                 type="number"
                 placeholder="Min Salary"
                 {...register("salary")}
-                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
+                className="p-3 pl-12 w-full border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all"
               />
               <FaDollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-500 text-xl hover:scale-110 transition-transform" />
             </div>
@@ -190,7 +189,8 @@ export default function JobListingPage() {
                       <p className="text-gray-600 text-sm sm:text-base mb-4 flex items-center gap-2">
                         <FaDollarSign className="text-green-500 text-base hover:scale-110 transition-transform" />
                         <span>
-                          <strong>Salary:</strong> ${job.salary.toLocaleString()}
+                          <strong>Salary:</strong> $
+                          {job.salary.toLocaleString()}
                         </span>
                       </p>
                     </div>

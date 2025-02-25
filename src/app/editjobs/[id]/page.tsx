@@ -74,7 +74,7 @@ export default function EditJobPage() {
   };
 
   const inputClasses =
-    "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
+    "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
 
   if (isLoading)
     return (

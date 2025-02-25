@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast"; 
+import toast, { Toaster } from "react-hot-toast";
 
 const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -53,7 +53,7 @@ export default function CreateJobPage() {
   };
 
   const inputClasses =
-    "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
+    "mt-1 block w-full bg-gray-50 border border-gray-300 rounded-lg p-3 placeholder-gray-400 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">

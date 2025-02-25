@@ -102,7 +102,7 @@ const ApplicationForm = () => {
               type="text"
               placeholder="Your Name"
               {...register("fullName")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.fullName && (
               <p className="text-red-500 text-sm mt-1">
@@ -118,7 +118,7 @@ const ApplicationForm = () => {
               type="email"
               placeholder="Example@gmail.com"
               {...register("email")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -134,7 +134,7 @@ const ApplicationForm = () => {
               placeholder="Your cover letter..."
               rows={4}
               {...register("coverLetter")}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300"
             />
             {errors.coverLetter && (
               <p className="text-red-500 text-sm mt-1">
@@ -150,7 +150,7 @@ const ApplicationForm = () => {
               type="file"
               {...register("resume")}
               accept=".pdf, .doc, .docx"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300 cursor-pointer"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300 cursor-pointer"
             />
             {errors.resume && (
               <p className="text-red-500 text-sm mt-1">
