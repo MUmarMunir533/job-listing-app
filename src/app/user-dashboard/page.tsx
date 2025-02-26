@@ -114,12 +114,18 @@ export default function UserDashboard() {
     }
   };
 
+  const sortedApplications =
+    applications && applications.length > 0
+      ? [...applications].sort((a, b) => b.id - a.id)
+      : [];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8 flex flex-col md:flex-row items-center justify-between">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white text-center md:text-left flex items-center gap-2">
-            <FaUser className="text-blue-500 text-xl sm:text-2xl" /> User Dashboard
+            <FaUser className="text-blue-500 text-xl sm:text-2xl" /> User
+            Dashboard
           </h1>
           <button
             onClick={handleLogout}
@@ -160,8 +166,8 @@ export default function UserDashboard() {
         </h2>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {applications && applications.length > 0 ? (
-            applications.map((app: any) => (
+          {sortedApplications && sortedApplications.length > 0 ? (
+            sortedApplications.map((app: any) => (
               <div
                 key={app.id}
                 className={`bg-white shadow-lg rounded-lg p-4 sm:p-6 border-l-4 ${getCardBorderClass(

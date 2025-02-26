@@ -76,12 +76,13 @@ export default function JobListingPage() {
       if (sal !== undefined) {
         data = data.filter((job) => job.salary >= sal);
       }
+      data.sort((a, b) => b.id - a.id);
+
       return data;
     },
   });
 
   const onSubmit = (data: SearchFormData) => {
-
   };
 
   const handleApply = (id: number) => {
@@ -189,8 +190,7 @@ export default function JobListingPage() {
                       <p className="text-gray-600 text-sm sm:text-base mb-4 flex items-center gap-2">
                         <FaDollarSign className="text-green-500 text-base hover:scale-110 transition-transform" />
                         <span>
-                          <strong>Salary:</strong> $
-                          {job.salary.toLocaleString()}
+                          <strong>Salary:</strong> ${job.salary.toLocaleString()}
                         </span>
                       </p>
                     </div>

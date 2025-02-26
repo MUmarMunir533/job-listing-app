@@ -49,6 +49,8 @@ export default function AdminDashboard() {
     queryFn: fetchJobs,
   });
 
+  const sortedJobs = jobs ? [...jobs].sort((a, b) => b.id - a.id) : [];
+
   const [jobToDelete, setJobToDelete] = React.useState<Job | null>(null);
 
   const deleteMutation = useMutation({
@@ -156,8 +158,8 @@ export default function AdminDashboard() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {jobs && jobs.length > 0 ? (
-              jobs.map((job) => (
+            {sortedJobs && sortedJobs.length > 0 ? (
+              sortedJobs.map((job) => (
                 <div
                   key={job.id}
                   className="bg-white shadow-md hover:shadow-xl rounded-lg p-4 border-l-4 border-blue-500 transition-all duration-300 transform hover:scale-105"

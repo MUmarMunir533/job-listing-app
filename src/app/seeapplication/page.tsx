@@ -16,8 +16,7 @@ interface Application {
 }
 
 export default function ApplicationsPage() {
-  const [selectedApplication, setSelectedApplication] =
-    useState<Application | null>(null);
+  const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedDeleteId, setSelectedDeleteId] = useState<number | null>(null);
 
@@ -27,18 +26,15 @@ export default function ApplicationsPage() {
     queryKey: ["applications"],
     queryFn: async () => {
       const response = await axios.get("/api/auth/application");
-      return response.data;
+      let data: Application[] = response.data;
+
+      data.sort((a, b) => b.id - a.id);
+      return data;
     },
   });
 
   const updateStatusMutation = useMutation({
-    mutationFn: async ({
-      id,
-      newStatus,
-    }: {
-      id: number;
-      newStatus: "accepted" | "rejected";
-    }) => {
+    mutationFn: async ({ id, newStatus }: { id: number; newStatus: "accepted" | "rejected"; }) => {
       const response = await axios.patch(`/api/auth/application?id=${id}`, {
         status: newStatus,
       });
@@ -66,6 +62,7 @@ export default function ApplicationsPage() {
   const deleteApplication = (id: number) => {
     deleteApplicationMutation.mutate(id);
   };
+
   const openDeleteModal = (id: number) => {
     setSelectedDeleteId(id);
     setShowDeleteModal(true);
@@ -104,7 +101,6 @@ export default function ApplicationsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 md:p-6">
-
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-white">
           Job Applications
