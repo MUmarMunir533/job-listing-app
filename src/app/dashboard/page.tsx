@@ -15,6 +15,8 @@ import {
 } from "react-icons/fa";
 import RingLoader from "react-spinners/RingLoader";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Job {
   id: number;
@@ -66,6 +68,7 @@ export default function AdminDashboard() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["jobs"] });
+      toast.success("Job deleted successfully");
     },
   });
 
@@ -244,6 +247,18 @@ export default function AdminDashboard() {
             </div>
           </div>
         )}
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     </div>
   );

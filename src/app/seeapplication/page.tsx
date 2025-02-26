@@ -6,6 +6,8 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaEye, FaCheck, FaTimes, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import RingLoader from "react-spinners/RingLoader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Application {
   id: number;
@@ -16,7 +18,8 @@ interface Application {
 }
 
 export default function ApplicationsPage() {
-  const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
+  const [selectedApplication, setSelectedApplication] =
+    useState<Application | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedDeleteId, setSelectedDeleteId] = useState<number | null>(null);
 
@@ -27,14 +30,19 @@ export default function ApplicationsPage() {
     queryFn: async () => {
       const response = await axios.get("/api/auth/application");
       let data: Application[] = response.data;
-
       data.sort((a, b) => b.id - a.id);
       return data;
     },
   });
 
   const updateStatusMutation = useMutation({
-    mutationFn: async ({ id, newStatus }: { id: number; newStatus: "accepted" | "rejected"; }) => {
+    mutationFn: async ({
+      id,
+      newStatus,
+    }: {
+      id: number;
+      newStatus: "accepted" | "rejected";
+    }) => {
       const response = await axios.patch(`/api/auth/application?id=${id}`, {
         status: newStatus,
       });
@@ -52,6 +60,7 @@ export default function ApplicationsPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
+      toast.success("Application deleted successfully");
     },
   });
 
@@ -250,6 +259,18 @@ export default function ApplicationsPage() {
           </div>
         </div>
       )}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
